@@ -1,0 +1,17 @@
+body {
+    font-family: sans-serif;
+    text-align: center;
+    color: white;
+    padding-top: 50px;
+}
+
+.container {
+    padding: 20px;
+    border-radius: 10px;
+}
+
+body.development { background-color: #007BFF; } /* Blue */
+body.uat { background-color: #FFC107; }         /* Yellow */
+body.staging { background-color: #6F42C1; }     /* Purple */
+body.production { background-color: #28A745; }  /* Green */
+
