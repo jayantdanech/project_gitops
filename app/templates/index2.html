@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SimpleApp - {{ environment }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="{{ environment|lower }}">
+    <div class="container">
+        <h1>SimpleApp</h1>
+        <h2>Environment: {{ environment }}</h2>
+        <p>Version: {{ version }}</p>
+        <p>This is the <strong>{{ environment }}</strong> environment deployment simulation.</p>
+    </div>
+</body>
+</html>
+

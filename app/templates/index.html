@@ -1,17 +1,50 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>SimpleApp - {{ environment }}</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>SimpleApp - {{ environment }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body class="{{ environment|lower }}">
-    <div class="container">
-        <h1>SimpleApp</h1>
-        <h2>Environment: {{ environment }}</h2>
-        <p>Version: {{ version }}</p>
-        <p>This is the <strong>{{ environment }}</strong> environment deployment simulation.</p>
-	<p>Small Features</p>
-    </div>
+    <div class="container">
+        <h1>SimpleApp</h1>
+        <h2>Environment: {{ environment }}</h2>
+        <p>Version: {{ version }}</p>
+        <p>This is the <strong>{{ environment }}</strong> environment deployment simulation.</p>
+        
+        <p>Current Local Time: <strong id="dynamic-time">Loading...</strong></p> 
+        
+    </div>
+
+    <script>
+        function updateClock() {
+            const now = new Date();
+            
+            // Define options for formatting the date and time
+            const options = {
+                weekday: 'short', // e.g., "Sat"
+                year: 'numeric',
+                month: 'short', // e.g., "Nov"
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: false // Set to true for 12-hour clock, false for 24-hour
+            };
+
+            // Use the user's browser locale to format the date/time string
+            const formattedTime = now.toLocaleString(undefined, options);
+            
+            // Update the content of the HTML element
+            const timeElement = document.getElementById('dynamic-time');
+            if (timeElement) {
+                timeElement.textContent = formattedTime;
+            }
+        }
+
+        // 1. Run the function immediately to show the time without delay
+        updateClock();
+        // 2. Set an interval to refresh the time every 1000 milliseconds (1 second)
+        setInterval(updateClock, 1000); 
+    </script>
 </body>
 </html>
-
