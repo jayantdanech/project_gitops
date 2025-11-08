@@ -4,14 +4,19 @@ from datetime import datetime
 
 app = Flask(__name__)
 
+# Static at app start
+BUILD_TIME = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
 @app.route('/')
 def home():
     environment = os.getenv("APP_ENV", "development").capitalize()
     version = os.getenv("APP_VERSION", "v1.0")
-    date_time = os.get
-    formatted_date_time = current_datetime.strftime("%A, %B %d, %Y at %H:%M:%S")
-
-    return render_template('index.html', environment=environment, version=version, server_datetime=formatted_date_time)
+    return render_template(
+        'index.html',
+        environment=environment,
+        version=version,
+        build_time=BUILD_TIME
+    )
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
