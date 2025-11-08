@@ -18,3 +18,9 @@ simpleapp/
 │   └── promote.sh
 └── README.md
 
+
+Dev:      http://localhost:5001
+UAT:      http://localhost:5002
+Staging:  http://localhost:5003
+Prod:     http://localhost:5004
+
