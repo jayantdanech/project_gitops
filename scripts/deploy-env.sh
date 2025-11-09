@@ -33,7 +33,7 @@ environ() {
         project_branch='uat'
     elif [[ $env == "dev" ]]; then
         port_info="5001"
-        project_branch='dev'
+        project_branch='develop'
     fi
 
     echo -e "\n** DEPLOYMENT INFORMATION **\nProject Environment:  ${env}\nApp deployed! Visit http://localhost:${port_info}"
