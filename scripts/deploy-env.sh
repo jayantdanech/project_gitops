@@ -8,18 +8,36 @@ set -e
 
 env=${1:-dev}
 
+gitrepo () {
+
+    gitBranch=$(git branch --show-current)
+    if [[ $gitBranch == "$project_branch" ]]; then
+        echo -e "Project Branch is Okay"
+    else
+        echo -e "Project Branch is Okay $gitBranch (required $project_branch)\nSwitching to $project_branch ..."
+        git checkout $project_branch
+        git pull
+    fi
+
+}
+
 environ() {
     if [[ $env == "prod" ]]; then
         port_info="5004"
+        project_branch='main'
     elif [[ $env == "staging" ]]; then
         port_info="5003"
+        project_branch='staging'
     elif [[ $env == "uat" ]]; then
         port_info="5002"
+        project_branch='uat'
     elif [[ $env == "dev" ]]; then
         port_info="5001"
+        project_branch='dev'
     fi
 
     echo -e "\n** DEPLOYMENT INFORMATION **\nProject Environment:  ${env}\nApp deployed! Visit http://localhost:${port_info}"
+    gitrepo
 }
 
 case $env in
@@ -33,4 +51,3 @@ case $env in
     exit 1
     ;;
 esac
-
